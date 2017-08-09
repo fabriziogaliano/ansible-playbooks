@@ -45,11 +45,12 @@
         mode: 750
 
     - name: Enable Docker service
-      command: systemctl enable docker
+      # command: systemctl enable docker
+      systemd: name=docker enabled=yes state=started
       notify:
         - restart docker
 
   handlers:
     - name: restarting docker
-      service: name=docker state=restarted
+      systemd: name=docker state=restarted
       listen: "restart docker"

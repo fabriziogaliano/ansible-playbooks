@@ -36,7 +36,7 @@
         update_cache: yes
 
     - name: Install docker 17.06 CE
-      apt: name=docker-ce update_cache=yes state=latest
+      apt: name=docker-ce=17.06.0~ce-0~ubuntu update_cache=yes
 
     - name: Install Docker Compose
       get_url: 
@@ -45,7 +45,6 @@
         mode: 750
 
     - name: Enable Docker service
-      # command: systemctl enable docker
       systemd: name=docker enabled=yes state=started
       notify:
         - restart docker
